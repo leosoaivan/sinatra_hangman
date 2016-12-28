@@ -4,7 +4,7 @@ A Ruby implementation of Hangman, a morbid guessing game, now on the web! Read m
 This was developed as a web-app using Sinatra.
 
 ## Installation
-1. None needed. Check it out [here]!
+1. None needed. Check it out [here](https://fierce-island-53975.herokuapp.com/)!
 
 ## Usage
 TODO: Write usage instructions
