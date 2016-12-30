@@ -1,0 +1,20 @@
+<div id="description">
+  <p>
+    Try to guess the secret word, but beware: You only have 6 wrong guesses!
+  </p>
+</div>
+<div id="display">
+  <%= @secret_word %>
+  <br>
+  <%= @display.join("  ") %>
+  <br>
+  <%= @wrong_guesses %>
+  <br>
+  <%= @num_guesses %>
+</div>
+<div id="form">
+  <form method="POST" action="/">
+    Your guess:
+    <input type="text" class="textbox" name="user_guess" pattern="[A-Za-z]" size="1" maxlength="1" autofocus>
+  </form>
+</div>
