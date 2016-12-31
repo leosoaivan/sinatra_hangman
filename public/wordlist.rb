@@ -6,10 +6,6 @@ class WordList
     edit_list
   end
 
-  def print
-    @list.join(", ")
-  end
-
 private
 
   def create_list(filename)

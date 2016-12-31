@@ -1,22 +1,28 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require 'pry'
 
 require_relative './public/wordlist'
 
 enable :sessions
-word_set = WordList.new('./public/5desk.txt').list
 
 get '/' do
   variables
   erb :main
 end
 
+get '/newgame' do
+  newgame
+  redirect to('/')
+end
+
 post '/' do
-  evaluate_guess(params[:user_guess].upcase)
-  redirect to("/")
+  check_response(params[:user_guess].upcase)
+  redirect to('/')
 end
 
 helpers do
+
 
   def variables
     @secret_word = session[:secret_word]
@@ -26,7 +32,8 @@ helpers do
     @used_letters = session[:used_letters]
   end
 
-  def game
+  def newgame
+    word_set = WordList.new('./public/5desk.txt').list
     session[:secret_word] = secret_word(word_set)
     session[:num_guesses] = 6
     session[:display] = display
@@ -42,29 +49,30 @@ helpers do
     Array.new(session[:secret_word].length, " _ ")
   end
 
-  def evaluate_guess(user_guess)
-    if session[:secret_word].include?(user_guess)
-      secret_index_matching(user_guess)
-      session[:used_letters] << user_guess
+  def check_response(guess)
+    if used_letter?(guess)
+      return
     else
-      tally_wrong(user_guess)
-      session[:used_letters] << user_guess
+      evaluate_guess(guess)
     end
   end
 
-  #Updates the display with correct letters at the correct index
-  def secret_index_matching(user_guess)
-    session[:secret_word].each_with_index do |el, ind|
-      if user_guess == el
-        session[:display][ind] = user_guess
+  def used_letter?(guess)
+    session[:used_letters].include?(guess) ? true : false
+  end
+
+  def evaluate_guess(guess)
+    if session[:secret_word].include?(guess)
+      session[:secret_word].each_with_index do |el, ind|
+        if guess == el
+          session[:display][ind] = guess
+        end
       end
+    else
+      session[:wrong_guesses] << guess
+      session[:num_guesses] -= 1
     end
+    session[:used_letters] << guess
   end
-
-  def tally_wrong(user_guess)
-    session[:wrong_guesses] << user_guess
-    session[:num_guesses] -= 1
-  end
-
 
 end
