@@ -8,14 +8,16 @@
   <br> -->
   <div class="display">
     <% if @display %>
-      <%= @display.join %>
+      <%= @display.join(' ') %>
     <% end %>
   </div>
-  <br>
   <div class="wrong">
     <%= @wrong_guesses.sort.join(' ') %>
   </div>
-  <%= @message %>
+  <br>
+  <div id="message">
+    <%= @message %>
+  </div>
   <br>
 </div>
 <div id="form">
