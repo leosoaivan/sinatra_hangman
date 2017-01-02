@@ -8,6 +8,9 @@ enable :sessions
 
 get '/' do
   variables
+  if variables.nil?
+    newgame
+  end
   erb :main
 end
 
@@ -16,13 +19,24 @@ get '/newgame' do
   redirect to('/')
 end
 
+get '/lost' do
+  variables
+  erb :lost
+end
+
+get '/won' do
+  variables
+  erb :won
+end
+
 post '/' do
+  session[:message] = ""
   check_response(params[:user_guess].upcase)
+  check_game
   redirect to('/')
 end
 
 helpers do
-
 
   def variables
     @secret_word = session[:secret_word]
@@ -30,6 +44,7 @@ helpers do
     @display = session[:display]
     @wrong_guesses = session[:wrong_guesses]
     @used_letters = session[:used_letters]
+    @message = session[:message]
   end
 
   def newgame
@@ -39,6 +54,7 @@ helpers do
     session[:display] = display
     session[:wrong_guesses] = []
     session[:used_letters] = []
+    session[:message] = ""
   end
 
   def secret_word(word_set)
@@ -51,6 +67,7 @@ helpers do
 
   def check_response(guess)
     if used_letter?(guess)
+      session[:message] = "Motherfucker you already tried that letter. Play better."
       return
     else
       evaluate_guess(guess)
@@ -73,6 +90,17 @@ helpers do
       session[:num_guesses] -= 1
     end
     session[:used_letters] << guess
+  end
+
+  def check_game
+    if session[:num_guesses] == 0
+      session[:message] = "You should feel bad. Your word was #{session[:secret_word].join("")}."
+      redirect to('/lost')
+    end
+    if !session[:display].include?(" _ ")
+      session[:message] = "Aced it, mate. And you did it with #{session[:num_guesses]} guesses left."
+      redirect to ('/won')
+    end
   end
 
 end
