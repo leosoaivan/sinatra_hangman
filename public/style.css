@@ -63,14 +63,13 @@ h1 {
 
 .display {
   height: 40px;
-  margin: 10px auto;
+  margin-bottom: 20px;
   text-align: center;
   font-size: 40px;
 }
 
 .wrong {
   height: 40px;
-  margin: 10px auto;
   text-align: center;
   font-size: 40px;
   font-family: "Permanent Marker", sans-serif;

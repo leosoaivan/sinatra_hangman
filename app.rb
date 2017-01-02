@@ -93,12 +93,13 @@ helpers do
   end
 
   def check_game
+    str = session[:secret_word].join("")
     if session[:num_guesses] == 0
-      session[:message] = "You lost and you should feel bad. Your word was #{session[:secret_word].join("")}."
+      session[:message] = "You lost and you should feel bad. Your word was #{str}."
       redirect to('/lost')
     end
     if !session[:display].include?(" _ ")
-      session[:message] = "Aced it, mate. And you did it with #{6 - session[:num_guesses]} wrong guess(es)."
+      session[:message] = "Aced it! The word was #{str} and you guessed it with #{session[:num_guesses]} guess(es) left."
       redirect to ('/won')
     end
   end
