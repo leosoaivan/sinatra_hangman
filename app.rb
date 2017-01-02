@@ -7,10 +7,10 @@ require_relative './public/wordlist'
 enable :sessions
 
 get '/' do
-  variables
   if variables.nil?
     newgame
   end
+  variables
   erb :main
 end
 
@@ -62,12 +62,12 @@ helpers do
   end
 
   def display
-    Array.new(session[:secret_word].length, " _ ")
+    display = Array.new(session[:secret_word].length, " _ ")
   end
 
   def check_response(guess)
     if used_letter?(guess)
-      session[:message] = "Motherfucker you already tried that letter. Play better."
+      session[:message] = "Motherf*!@r, you already tried that letter. Play better."
       return
     else
       evaluate_guess(guess)
@@ -94,11 +94,11 @@ helpers do
 
   def check_game
     if session[:num_guesses] == 0
-      session[:message] = "You should feel bad. Your word was #{session[:secret_word].join("")}."
+      session[:message] = "You lost and you should feel bad. Your word was #{session[:secret_word].join("")}."
       redirect to('/lost')
     end
     if !session[:display].include?(" _ ")
-      session[:message] = "Aced it, mate. And you did it with #{session[:num_guesses]} guesses left."
+      session[:message] = "Aced it, mate. And you did it with #{6 - session[:num_guesses]} wrong guess(es)."
       redirect to ('/won')
     end
   end

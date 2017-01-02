@@ -13,10 +13,15 @@ h1 {
   font-size: 60px;
 }
 
+/*div {
+  border: 1px solid black;
+}*/
+
 #container {
   height: auto;
   min-height: 100%;
   position: relative;
+  text-align: center;
 }
 
 #title {
@@ -28,7 +33,7 @@ h1 {
 
 #restart {
   width: 100%;
-  margin: auto;
+  margin: 20px auto;
   padding: 10px;
   text-align: center;
 }
@@ -48,6 +53,26 @@ h1 {
   padding: 15px;
   text-align: center;
   background-color: #ededed;
+}
+
+#game {
+  width: 50%;
+  text-align: center;
+  margin: 20px auto auto auto;
+}
+
+.display {
+  margin: 15px auto auto auto;
+  text-align: center;
+  font-size: 40px;
+}
+
+.wrong {
+  margin: 15px auto auto auto;
+  text-align: center;
+  font-size: 40px;
+  font-family: "Permanent Marker", sans-serif;
+  color: red;
 }
 
 #link:link {

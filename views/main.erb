@@ -3,20 +3,24 @@
     Try to guess the secret word, but beware: You only have 6 wrong guesses!
   </p>
 </div>
-<div id="display">
-  <%= @secret_word %>
+<div id="game">
+  <!-- <%= @secret_word %>
+  <br> -->
+  <div class="display">
+    <% if @display %>
+      <%= @display.join %>
+    <% end %>
+  </div>
   <br>
-  <%= @display %>
-  <br>
-  <%= @wrong_guesses %>
-  <br>
-  <%= @num_guesses %>
-  <br>
+  <div class="wrong">
+    <%= @wrong_guesses.sort.join(' ') %>
+  </div>
   <%= @message %>
+  <br>
 </div>
 <div id="form">
   <form method="POST" action="/">
-    Your guess:
+    You have <%= @num_guesses %> guess(es) left. Pick a letter:
     <input type="text" class="textbox" name="user_guess" pattern="[A-Za-z]" size="1" maxlength="1" autofocus>
   </form>
 </div>
