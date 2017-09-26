@@ -1,3 +1,3 @@
-require './app'
+require File.dirname(__FILE__) + '/app/models/modular_hangman'
 
-run Sinatra::Application
+Hangman.run!
