@@ -1,32 +1,20 @@
 class WordList
-  attr_accessor :list
+  attr_reader :filename
 
   def initialize(filename)
-    @list = create_list(filename)
-    edit_list
+    @filename = filename
   end
 
-private
-
-  def create_list(filename)
-    words = File.new(filename)
-    words.readlines
-  end
-
-  def edit_list
-    trim_words
-    delete_words
-    @list
-  end
-
-  def trim_words
-    @list.each { |word| word.gsub!(/\r\n/, "") }
-  end
-
-  def delete_words
-    @list.delete_if do |word|
+  def to_edited_a
+    stripped_array.delete_if do |word|
       !word.length.between?(5, 12) || /[A-Z]/.match(word)
     end
   end
+
+  private
+
+    def stripped_array
+      filename.map! { |word| word.strip }
+    end
 
 end
