@@ -1,6 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
-require './app/models/modular_hangman'
+require './modular_hangman'
 require 'rspec'
 require 'rack/test'
 
