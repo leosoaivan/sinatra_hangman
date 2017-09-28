@@ -1,3 +1,3 @@
-require File.dirname(__FILE__) + '/app/models/modular_hangman'
+require './modular_hangman'
 
 Hangman.run!
