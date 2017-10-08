@@ -1,8 +1,8 @@
 class WordList
-  attr_reader :filename
+  attr_reader :file
 
-  def initialize(filename)
-    @filename = filename
+  def initialize(file)
+    @file = file
   end
 
   def to_edited_a
@@ -14,7 +14,7 @@ class WordList
   private
 
     def stripped_array
-      filename.map! { |word| word.strip }
+      file.map! { |word| word.strip }
     end
 
 end

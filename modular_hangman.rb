@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './app/models/wordlist'
+require './app/models/game'
 require './app/helpers/helper'
 
 class Hangman < Sinatra::Base
