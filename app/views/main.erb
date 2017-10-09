@@ -4,15 +4,13 @@
   </p>
 </div>
 <div id="game">
-  <!-- <%= @secret_word %>
-  <br> -->
   <div class="display">
-    <% if @display %>
-      <%= @display.join(' ') %>
+    <% if @blank_display %>
+      <%= @blank_display.join(' ') %>
     <% end %>
   </div>
   <div class="wrong">
-    <%= @wrong_guesses.sort.join(' ') %>
+    <%= session[:wrong_guesses].sort.join(' ') %>
   </div>
   <br>
   <div id="message">
@@ -22,7 +20,7 @@
 </div>
 <div id="form">
   <form method="POST" action="/">
-    You have <%= @num_guesses %> guess(es) left. Pick a letter:
+    You have <%= session[:num_guesses] %> wrong guess(es) left. Pick a letter:
     <input type="text" class="textbox" name="user_guess" pattern="[A-Za-z]" size="1" maxlength="1" autofocus>
   </form>
 </div>
