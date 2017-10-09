@@ -1,6 +1,6 @@
 require './app/helpers/helper'
 
-describe HelperUtils do
+xdescribe HelperUtils do
   let(:subject) { Class.new { include HelperUtils } }
   let(:session) { last_request.env["rack.session"] }
 

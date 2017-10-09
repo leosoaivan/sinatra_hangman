@@ -2,7 +2,7 @@ class TextParser
   attr_reader :parsed
 
   def initialize(file)
-    @parsed = parser(File.new(file).readlines)
+    @parsed = parser(file.readlines)
   end
 
   protected

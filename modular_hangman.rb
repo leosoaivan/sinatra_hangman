@@ -1,5 +1,4 @@
 require 'sinatra/base'
-require 'pry'
 require './app/models/wordchooser'
 require './app/models/textparser'
 require './app/helpers/helper'
