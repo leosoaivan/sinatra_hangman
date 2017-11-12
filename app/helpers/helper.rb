@@ -57,12 +57,12 @@ module HelperUtils
 
   def check_game
     if session[:num_guesses] == 0
-      session[:message] = "You lost and you should feel bad. Your word was #{session[:secret_word]}."
+      session[:message] = "You lost and you should feel bad. Your word was #{session[:secret_word].upcase}."
 
       redirect to('/lost')
     end
     if !session[:blank_display].include?(" _ ")
-      session[:message] = "Aced it! The word was #{session[:secret_word]} and you guessed it with #{session[:num_guesses]} guess(es) left."
+      session[:message] = "Aced it! The word was #{session[:secret_word].upcase} and you guessed it with #{session[:num_guesses]} guess(es) left."
       
       redirect to ('/won')
     end
